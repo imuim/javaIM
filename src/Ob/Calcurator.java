@@ -20,15 +20,29 @@ public class Calcurator {
         System.out.println(this.left+this.right);
     }
 
-    public void avg(){
-        System.out.println((this.left+this.right)/2);
+    public int avg(){
+//
+        return((this.left+this.right)/2);
     }
 
 }
 
 class SubstractionableCaculator extends Calcurator{
+
+    @Override
+    public void sum() { //@Override 부모가 이미 가지고 있는 sum을 재정의하고자한다. 위의 @Override 쓰고 하면 가능
+        System.out.println("실행결과는 "+(this.left+this.right)+"입니다.");
+    }
+
     public void substract(){
         System.out.println(this.left-this.right);
+    }
+
+    public int avg(){
+//        return (this.left+this.right)/2;
+// 부모의 클래스와 같이 중복되므로 아래와 같이 사용한다.
+        return super.avg();//슢퍼는 부모클래스를 말함. 부모객체가 가지고 있는 에버리지라는 메서드를 호출한다. 부가적으로 이하에 다른 기능의
+        //메서드로직을 추가하면 된다.
     }
 
 
@@ -52,6 +66,10 @@ class SubstractionableCaculator extends Calcurator{
         c1.setOper(20,10);
         c1.substract();
         c1.avg();
+          c1.sum(); //SubstractionableCaculater는 sum이라는 메서드를 가지고 있지않다. 부모인 calculator에 sum이 있는지 찾고 출력
+                    //overide로 부모클래스를 상속한 자식클래스에서 재정의한다면 재정의한 메서드에서 출력 //부모클래스의 메서드는 무시됨 이것이 메서드
+                    //오버라이딩이라고함
+                    //오버라이딩시 부모와 자식의 메서드 이름 그리고  리턴 데이터타입과 매개변수 일치해야한다. --메서드의 시그니쳐라고 얘기함
 
     }
 }
